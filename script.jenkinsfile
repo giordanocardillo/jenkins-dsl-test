@@ -1,0 +1,18 @@
+pipeline {
+    agent { label 'base' }
+
+    stages {
+
+        stage('Downloading jar file') {
+            steps {
+                script {
+                    fileDownloadOperation(
+                        url: 'https://github.com/giordanocardillo/jenkins-dsl-test/releases/download/v0.0.1/sqljdbc.jar',
+                        targetLocation: 'eks/docker/peppe.jar'
+                        )
+                }
+            }
+        }
+
+    }
+}

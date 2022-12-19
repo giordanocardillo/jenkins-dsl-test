@@ -28,9 +28,13 @@ pipelineJob('EKS/01-docker/05-BATCH') {
                     } else if(BATCH.equals('2')){
                         return ['Two']
                     }''')
+
         fallbackScript('')
       }
       referencedParameter('BATCH')
     }
+    }
+    definition{
+      scriptPath("./script.jenkinsfile")
     }
 }
