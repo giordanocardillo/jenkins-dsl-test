@@ -3,12 +3,24 @@ pipeline {
     stages {
         stage('Downloading jar file') {
             steps {
-                script {
+                sh 'touch hello.txt'
+                fileOperations([
+                    folderCreateOperation(
+                        folderPath: 'eks/download'
+                    ),
+                    folderCreateOperation(
+                        folderPath: 'eks/download'
+                    ),
                     fileDownloadOperation(
                         url: 'https://github.com/giordanocardillo/jenkins-dsl-test/releases/download/v0.0.1/sqljdbc.jar',
-                        targetLocation: 'eks/docker/downloaded.jar'
-                        )
-                }
+                        targetFileName: 'downloaded.jar',
+                        targetLocation: 'eks/download',
+                        userName: '',
+                        password: '',
+                        proxyPort: null,
+                        proxyHost: null
+                    )
+                ])
             }
         }
 
