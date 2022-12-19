@@ -36,7 +36,7 @@ pipelineJob('EKS/01-docker/05-BATCH') {
     }
     definition {
       cps {
-          script('./script.jenkinsfile')
+          script(readFileFromWorkspace('./script.jenkinsfile'))
         }
     }
 }
