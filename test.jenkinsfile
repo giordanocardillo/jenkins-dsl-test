@@ -6,35 +6,39 @@ pipelineJob('EKS/01-docker/05-BATCH') {
         artifactNumToKeep(3)
     }
     parameters {
-    activeChoiceParam('BATCH') {
-      choiceType('SINGLE_SELECT')
-      description('Select batch to build')
-      groovyScript {
-        script('''return [
-                        '1',
-                        '2',
-                        '3',
-                        '4'
-                    ]''')
-            fallbackScript('')
+      activeChoiceParam('BATCH') {
+        choiceType('SINGLE_SELECT')
+        description('Select batch to build')
+        groovyScript {
+          script('''return [
+                          '1',
+                          '2',
+                          '3',
+                          '4'
+                      ]''')
+              fallbackScript('')
+        }
       }
-    }
-    activeChoiceReactiveParam('VERSION') {
-      description('Select Batch Version')
-      choiceType('SINGLE_SELECT')
-      groovyScript {
-        script('''if(BATCH.equals('1')){
-                        return ['One']
-                    } else if(BATCH.equals('2')){
-                        return ['Two']
-                    }''')
+      activeChoiceReactiveParam('VERSION') {
+        description('Select Batch Version')
+        choiceType('SINGLE_SELECT')
+        groovyScript {
+          script('''if(BATCH.equals('1')){
+                          return ['One']
+                      } else if(BATCH.equals('2')){
+                          return ['Two']
+                      }''')
 
-        fallbackScript('')
+          fallbackScript('')
+        }
+        referencedParameter('BATCH')
       }
-      referencedParameter('BATCH')
     }
-    }
-    definition{
-      scriptPath("./script.jenkinsfile")
+    definition {
+      cpsScm {
+        scm {
+          scriptPath('./script.jenkinsfile')
+        }
+      }
     }
 }
