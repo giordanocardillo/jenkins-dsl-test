@@ -1,10 +1,11 @@
+folder('EKS')
+folder('EKS/01-docker')
 pipelineJob("EKS/01-docker/BATCH") {
     logRotator {
         numToKeep(5)
         artifactNumToKeep(3)
     }
     parameters {
-        stringParam('PROJECT_NAME', 'batch', '')
         activeChoiceParam('BATCH'){
             choiceType('SINGLE_SELECT')
             description('Select batch to build')
