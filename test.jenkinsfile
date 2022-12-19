@@ -1,7 +1,10 @@
 folder('EKS')
 folder('EKS/01-docker')
-pipelineJob("EKS/01-docker/BATCH") {
-
+pipelineJob("EKS/01-docker/05-BATCH") {
+    logRotator {
+        numToKeep(5)
+        artifactNumToKeep(3)
+    }
     parameters {
         activeChoiceParam('BATCH'){
             choiceType('SINGLE_SELECT')
