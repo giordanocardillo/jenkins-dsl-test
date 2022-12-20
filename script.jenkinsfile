@@ -2,10 +2,10 @@ pipeline {
     agent any
     stages {
         stage('Downloading jar file') {
-            script {
-                def test = 'testVariable'
-            }
             steps {
+                script {
+                    def test = 'testVariable'
+                }
                 echo "Test variable is ${test}"
                 sh 'touch hello.txt'
                 fileOperations([
