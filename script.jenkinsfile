@@ -4,7 +4,7 @@ pipeline {
         stage('Downloading jar file') {
             steps {
                 script {
-                    def test = 'testVariable'
+                    test = 'testVariable'
                 }
                 echo "Test variable is ${test}"
                 sh 'touch hello.txt'
